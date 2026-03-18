@@ -42,6 +42,8 @@
 - 组合表示 (Compositional Embedding) - 组合向量表示学习
 - 白盒规则 (White-box Rules) - 可解释白盒决策规则
 - 知识库构建 (KB Construction) - 结构化知识库构建
+- 几何建模 (Geometric Modeling) - 微分几何/纤维丛推荐建模
+- 离线索引推理 (Index-time Reasoning) - 推理移至离线索引阶段
 
 ### 问题标签 (Problem Tags)
 - CTR预估 (CTR Pred.) - 点击率预测
@@ -62,6 +64,12 @@
 - 金融交易理解 (Transaction Understanding) - 金融交易数据理解
 - 零样本迁移 (Zero-shot Transfer) - 跨任务零样本迁移
 - 地理定向 (Geo-targeting) - 位置感知广告定向
+- 推荐可解释性 (Explainability) - 推荐系统可解释性分析
+- 信息茧房量化 (Filter Bubble Quant.) - 信息茧房的量化方法
+- 特征工程自动化 (AutoFE) - 自动化特征工程
+- 嵌入盲点诊断 (Embedding Blind-spot) - 嵌入表示盲点分析
+- 长链推理验证 (Long-horizon Reasoning) - 长链推理的验证与优化
+- 多跳问答 (Multi-hop QA) - 多跳问答推理
 
 ### 星标标签 (Star Tags)
 - LLM&Rec - 使用大语言模型的推荐系统
@@ -80,3 +88,7 @@
 | 2603.13537 | 企业搜索 (Enterprise Search) | 多向量检索 (Multi-vector Retrieval), 多模态融合 (Multimodal Fusion), 后期交互 (Late Interaction) | 企业多模态检索 (Enterprise Multimodal Retrieval) | 多模态&Rec (Multimodal) | 否 | 两阶段后期交互检索：并行Token级ANN+Per-Document Top-M MaxSim近似；GPU加速精确MaxSim重排序；父子文档结构统一文本/图像/视频嵌入 | 在标准Apache Solr生产部署，ColQwen3.0 nDCG@10=58.1 |
 | 2603.13997 | 搜索广告 (Search Ads) | Embedding, 组合表示 (Compositional Embedding), CRF语义解析 | 地理定向 (Geo-targeting), 长尾查询 (Long-tail), 冷启动 (Cold-start) | — | 否 | worLd2vec家族联合学习查询/位置/广告/语义片段嵌入；CRF提取语义片段后向量加法组合 | lw2vCRF+解决45%稀有本地查询冷启动，precision@K最高+20% |
 | 2603.15459 | 金融风控 (FinTech/Risk) | RAG, 知识库构建 (KB Construction), 白盒规则 (White-box Rules) | 金融交易理解 (Transaction Understanding), 零样本迁移 (Zero-shot Transfer) | — | 否 | 检索优先框架将原始交易转换为3层语义KB，AutoWoE生成白盒规则，推理时检索最多20条规则形成结构化提示 | 零样本LLM MCC翻倍(0.19→0.38)，指令微调后达到专用模型SOTA(0.48) |
+| 2603.16088 | 通用推荐 (General Rec) | 图神经网络 (GNN), 序列推荐 (SeqRec), 几何建模 (Geometric Modeling) | 推荐可解释性 (Explainability), 信息茧房量化 (Filter Bubble Quant.) | — | 否 | 用微分几何纤维丛理论解耦推荐系统的拓扑协同结构与语义演化，提出几何偏差指数(GBI)量化信息茧房 | 首次用纤维丛理论统一解释协同聚合（平行传输）和偏好演化（和乐变换）；GBI与香农熵强负相关 |
+| 2603.15713 | 金融风控 (FinTech/Risk) | RAG, Agent系统 (Agent System), 序列推荐 (SeqRec) | 特征工程自动化 (AutoFE), 嵌入盲点诊断 (Embedding Blind-spot) | LLM&Rec | 否 | 用LLM驱动的自反式特征生成代理（Alignment分数+Utility分数）弥合事件序列嵌入与可解释特征的鸿沟 | 首次嵌入感知AutoFE；弱嵌入NTP提升+19.3%，强嵌入CoLES提升+5.8% |
+| 2603.15726 | 通用Agent (General Agent) | Agent系统 (Agent System), 强化学习 (RL), 记忆增强 (Memory Augmentation) | Agent经验学习 (Agent Self-improvement), 长链推理验证 (Long-horizon Reasoning) | — | 否 | 用Local Verifier（步级验证）+Global Verifier（轨迹审计）+GRPO强化学习实现重型长链推理 | BrowseComp 88.2 SOTA；Local Verifier将难题交互步数降至1/6，Pass@1+26.4pp |
+| 2603.16415 | 企业知识库 (Enterprise KB) | RAG, 记忆增强 (Memory Augmentation), 离线索引推理 (Index-time Reasoning) | 召回优化 (Recall Opt.), 多跳问答 (Multi-hop QA) | LLM&Rec | 否 | 将跨文档推理移至离线索引阶段，为共享实体的跨文档对生成桥接事实作为独立可检索单元 | 平均F1超Naive RAG +4.6分；延迟与Naive RAG持平(0.30s)，比HippoRAG快10倍 |
