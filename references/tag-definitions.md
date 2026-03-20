@@ -13,8 +13,11 @@
 - 社交/内容 (Social/Content) - 社交媒体内容推荐
 - 新闻/资讯 (News) - 新闻资讯推荐
 - 音乐/播客 (Music/Podcast) - 音视频内容推荐
+- 流媒体 (Streaming) - 流媒体平台（Spotify等）推荐
 - 通用Agent (General Agent) - 通用智能体系统
 - 企业知识库 (Enterprise KB) - 企业级知识管理系统
+- 推荐基础设施 (RecSys Infra) - 推荐系统底层基础设施
+- 信息检索 (IR) - 通用信息检索任务
 
 ### 技术标签 (Technology Tags)
 - 双塔检索 (Two-tower Retrieval) - 双塔架构检索
@@ -33,6 +36,13 @@
 - 记忆增强 (Memory Augmentation) - 记忆增强
 - Agent系统 (Agent System) - 智能体系统
 - 量化 (Quantization) - 模型量化技术
+- 数据剪枝 (Data Pruning) - 训练数据剪枝与选择
+- 动态采样 (Dynamic Sampling) - 动态调整训练数据采样策略
+- GPU 哈希表 (GPU Hash Table) - GPU上的哈希表实现
+- 嵌入存储 (Embedding Storage) - 大规模嵌入表存储与管理
+- 缓存语义 (Cache Semantics) - 基于缓存语义的存储设计
+- 约束解码 (Constrained Decoding) - 推理时的约束生成（前缀字典树等）
+- 软提示个性化 (Soft Prompt) - 通过软提示注入用户偏好
 
 - 分布估计 (Distribution Estimation) - 分布参数估计技术
 - 信号去偏 (Signal Debiasing) - 推荐信号偏差校正
@@ -70,6 +80,17 @@
 - 嵌入盲点诊断 (Embedding Blind-spot) - 嵌入表示盲点分析
 - 长链推理验证 (Long-horizon Reasoning) - 长链推理的验证与优化
 - 多跳问答 (Multi-hop QA) - 多跳问答推理
+- 内容发现 (Discovery) - 推荐系统内容发现与探索
+- 可控推荐 (Controllable Rec) - 可通过指令控制的推荐输出
+- 统一搜索推荐 (Unified Search&Rec) - 统一搜索和推荐的单一模型
+- 多类型物品 (Heterogeneous Items) - 支持多种物品类型的推荐
+- 训练效率 (Training Efficiency) - 提升模型训练效率和收敛速度
+- 域适应 (Domain Adaptation) - 检索/推荐模型的域适应
+- 质量-覆盖权衡 (Quality-Coverage Tradeoff) - 稠密检索中质量与覆盖率的权衡
+- 数据噪声 (Noisy Labels) - 训练数据标注噪声问题
+- 嵌入内存管理 (Embedding Memory) - 大规模嵌入表的内存管理
+- 在线训练 (Online Training) - 连续在线训练场景
+- 吞吐量 (Throughput) - 系统吞吐量优化
 
 ### 星标标签 (Star Tags)
 - LLM&Rec - 使用大语言模型的推荐系统
@@ -92,3 +113,7 @@
 | 2603.15713 | 金融风控 (FinTech/Risk) | RAG, Agent系统 (Agent System), 序列推荐 (SeqRec) | 特征工程自动化 (AutoFE), 嵌入盲点诊断 (Embedding Blind-spot) | LLM&Rec | 否 | 用LLM驱动的自反式特征生成代理（Alignment分数+Utility分数）弥合事件序列嵌入与可解释特征的鸿沟 | 首次嵌入感知AutoFE；弱嵌入NTP提升+19.3%，强嵌入CoLES提升+5.8% |
 | 2603.15726 | 通用Agent (General Agent) | Agent系统 (Agent System), 强化学习 (RL), 记忆增强 (Memory Augmentation) | Agent经验学习 (Agent Self-improvement), 长链推理验证 (Long-horizon Reasoning) | — | 否 | 用Local Verifier（步级验证）+Global Verifier（轨迹审计）+GRPO强化学习实现重型长链推理 | BrowseComp 88.2 SOTA；Local Verifier将难题交互步数降至1/6，Pass@1+26.4pp |
 | 2603.16415 | 企业知识库 (Enterprise KB) | RAG, 记忆增强 (Memory Augmentation), 离线索引推理 (Index-time Reasoning) | 召回优化 (Recall Opt.), 多跳问答 (Multi-hop QA) | LLM&Rec | 否 | 将跨文档推理移至离线索引阶段，为共享实体的跨文档对生成桥接事实作为独立可检索单元 | 平均F1超Naive RAG +4.6分；延迟与Naive RAG持平(0.30s)，比HippoRAG快10倍 |
+| 2603.17540 | 流媒体播客 (Streaming/Podcast) | Semantic ID (SID), 生成式检索 (Generative Retrieval), 软提示个性化 (Soft Prompt), 指令调优 (Instruction Tuning) | 内容发现 (Discovery), 可控推荐 (Controllable Rec), 冷启动 (Cold-start) | 生成式推荐 (Generative Rec), LLM&Rec | 是 | R-KMeans SID+两阶段训练（语义接地+指令调优）+软提示用户嵌入+多任务Familiar/Unfamiliar可控探索；Beam Search优化 8× 吞吐 | 非习惯性流媒体+5.4%，新节目发现+14.3%；R-KMeans SID比RQ-VAE高9.52% HitRate@30；多任务提升Unfamiliar Recall +11.8% |
+| 2603.17533 | 流媒体多媒体 (Streaming) | Semantic ID (SID), 生成式检索 (Generative Retrieval), 约束解码 (Constrained Decoding), 多任务学习 (Multi-task) | 统一搜索推荐 (Unified Search&Rec), 可控推荐 (Controllable Rec), 多类型物品 (Heterogeneous Items) | 生成式推荐 (Generative Rec), LLM&Rec | 否 | 三阶段框架：SID构建→SID-语言双向对齐（仅训练SID embedding）→多任务指令调优（推荐/检索/解释/用户理解）；前缀字典树约束解码保证目录合法 | CPT导致MMLU崩溃(0.46→0.03)；NEO三阶段保留语言能力；1000万物品规模跨4类型；50%日志达production baseline |
+| 2603.17205 | 信息检索 (IR) | 数据剪枝 (Data Pruning), 稠密检索 (Dense Retrieval), 对比学习 (Contrastive Learning), 动态采样 (Dynamic Sampling) | 训练效率 (Training Efficiency), 域适应 (Domain Adaptation), 质量-覆盖权衡 (Quality-Coverage Tradeoff) | — | 否 | 识别稠密检索两阶段采样结构中质量-覆盖率权衡；SP保留高cosine相似度pair提升NDCG；DP用cosine调度软采样同时优化NDCG和Recall，更新间隔优化至1.64%额外开销 | DP：NDCG@10 +1.9%，Recall@20 +0.7%，平均排名1.38；不足50%训练时间达相当性能；SP+DP在噪声数据最优；BGE+Qwen3-Embedding均验证架构无关 |
+| 2603.17168 | 推荐基础设施 (RecSys Infra) | GPU 哈希表 (GPU Hash Table), 嵌入存储 (Embedding Storage), 缓存语义 (Cache Semantics) | 嵌入内存管理 (Embedding Memory), 在线训练 (Online Training), 吞吐量 (Throughput) | 系统效率 (System Efficiency) | 否 | 单桶约束+128B缓存行摘要（1次内存事务确定性miss）+内联CAS分数驱动upsert（无外部驱逐结构）+双桶P2C（99.4% top-N保留）+三组并发控制R/U/I（多updater并行4.80×）+分层KV分离 | H100 NVL: 3.9B-KV/s，λ=0.50~1.00变化<5%；vs WarpCore 1.4×；λ=1.00字典语义全崩溃；已集成HugeCTR/TFRA |
