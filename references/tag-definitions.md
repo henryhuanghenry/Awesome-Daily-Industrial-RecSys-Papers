@@ -117,3 +117,10 @@
 | 2603.17533 | 流媒体多媒体 (Streaming) | Semantic ID (SID), 生成式检索 (Generative Retrieval), 约束解码 (Constrained Decoding), 多任务学习 (Multi-task) | 统一搜索推荐 (Unified Search&Rec), 可控推荐 (Controllable Rec), 多类型物品 (Heterogeneous Items) | 生成式推荐 (Generative Rec), LLM&Rec | 否 | 三阶段框架：SID构建→SID-语言双向对齐（仅训练SID embedding）→多任务指令调优（推荐/检索/解释/用户理解）；前缀字典树约束解码保证目录合法 | CPT导致MMLU崩溃(0.46→0.03)；NEO三阶段保留语言能力；1000万物品规模跨4类型；50%日志达production baseline |
 | 2603.17205 | 信息检索 (IR) | 数据剪枝 (Data Pruning), 稠密检索 (Dense Retrieval), 对比学习 (Contrastive Learning), 动态采样 (Dynamic Sampling) | 训练效率 (Training Efficiency), 域适应 (Domain Adaptation), 质量-覆盖权衡 (Quality-Coverage Tradeoff) | — | 否 | 识别稠密检索两阶段采样结构中质量-覆盖率权衡；SP保留高cosine相似度pair提升NDCG；DP用cosine调度软采样同时优化NDCG和Recall，更新间隔优化至1.64%额外开销 | DP：NDCG@10 +1.9%，Recall@20 +0.7%，平均排名1.38；不足50%训练时间达相当性能；SP+DP在噪声数据最优；BGE+Qwen3-Embedding均验证架构无关 |
 | 2603.17168 | 推荐基础设施 (RecSys Infra) | GPU 哈希表 (GPU Hash Table), 嵌入存储 (Embedding Storage), 缓存语义 (Cache Semantics) | 嵌入内存管理 (Embedding Memory), 在线训练 (Online Training), 吞吐量 (Throughput) | 系统效率 (System Efficiency) | 否 | 单桶约束+128B缓存行摘要（1次内存事务确定性miss）+内联CAS分数驱动upsert（无外部驱逐结构）+双桶P2C（99.4% top-N保留）+三组并发控制R/U/I（多updater并行4.80×）+分层KV分离 | H100 NVL: 3.9B-KV/s，λ=0.50~1.00变化<5%；vs WarpCore 1.4×；λ=1.00字典语义全崩溃；已集成HugeCTR/TFRA |
+
+## 2026-03-24 新增已知标签
+
+| 论文ID | 场景 | 技术 | 问题 | 星标 | 线上AB | 方法 | 亮点 |
+|---|---|---|---|---|---|---|---|
+| 2603.21481 | 电商 (E-commerce), 社交/内容 (Social/Content) | 多模态融合 (Multimodal Fusion), 知识蒸馏 (Distillation) | 冷启动 (Cold-start), 排序优化 (Ranking Opt.) | LLM&Rec | 是 | 用户兴趣手册 + 多模态CoT + 蒸馏小模型用于可解释标签推荐 | 冷启动PVCTR显著提升 |
+| 2603.22231 | 广告 (Ads), 电商 (E-commerce) | 生成式检索 (Gen. Retrieval), 序列推荐 (SeqRec) | 排序优化 (Ranking Opt.), 召回优化 (Recall Opt.) | 生成式推荐 (Generative Rec) | 否 | 控制token统一有机/广告并在解码注入实时出价 | 收益-相关性可控权衡 |
