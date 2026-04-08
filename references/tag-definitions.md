@@ -124,3 +124,15 @@
 |---|---|---|---|---|---|---|---|
 | 2603.21481 | 电商 (E-commerce), 社交/内容 (Social/Content) | 多模态融合 (Multimodal Fusion), 知识蒸馏 (Distillation) | 冷启动 (Cold-start), 排序优化 (Ranking Opt.) | LLM&Rec | 是 | 用户兴趣手册 + 多模态CoT + 蒸馏小模型用于可解释标签推荐 | 冷启动PVCTR显著提升 |
 | 2603.22231 | 广告 (Ads), 电商 (E-commerce) | 生成式检索 (Gen. Retrieval), 序列推荐 (SeqRec) | 排序优化 (Ranking Opt.), 召回优化 (Recall Opt.) | 生成式推荐 (Generative Rec) | 否 | 控制token统一有机/广告并在解码注入实时出价 | 收益-相关性可控权衡 |
+
+## 2026-04-08 新增已知标签（Week 15）
+
+| 论文ID | 场景 | 技术 | 问题 | 星标 | 线上AB | 方法 | 亮点 |
+|---|---|---|---|---|---|---|---|
+| 2604.05314 | 外卖/本地生活 (Food Delivery) | 生成式检索 (Gen. Retrieval), 序列推荐 (SeqRec), 语义ID (Semantic ID) | 排序优化 (Ranking Opt.), 端到端优化 (E2E Opt.) | 生成式推荐 (Generative Rec) | 是 (+2.89% CTR, +3.15% GMV) | 树形Next-Scale生成+多尺度邻域损失解决重排全局-局部视角缺失与生成-评估目标不一致 | 候选集从8扩展到20大幅提升，美团外卖平台全量部署 |
+| 2604.04976 | 广告 (Ads) | 生成式检索 (Gen. Retrieval), 多模态融合 (Multimodal Fusion), 序列推荐 (SeqRec) | 召回优化 (Recall Opt.), 端到端优化 (E2E Opt.) | 生成式推荐 (Generative Rec), 多模态&Rec (Multimodal) | 否 | 发布TencentGR-1M/10M全模态广告数据集，组织工业生成式推荐竞赛 | 冠军方案验证negatives scaling law；10M用户真实脱敏数据集 |
+| 2604.05329 | 电商 (E-commerce) | 生成式检索 (Gen. Retrieval), 语义ID (Semantic ID) | 训练效率 (Training Efficiency), SID量化 (SID Quant.) | 生成式推荐 (Generative Rec) | 否 | SAP动态剪枝SID冗余token + MAP多步预测增强监督密度 | 1.38×加速、54.7%VRAM降低；引入250M+商品ALGR工业数据集 |
+| 2604.05113 | 电商 (E-commerce) | 生成式检索 (Gen. Retrieval), 语义ID (Semantic ID) | 长尾推荐 (Long-tail), SID量化 (SID Quant.) | 生成式推荐 (Generative Rec) | 否 | Codebook Rebalancing（正则化K-means拆分过热token）+层次语义对齐解决GeneRec流行度偏差 | MGU降低16.5%，训练时间仅为重加权法1/11；首次揭示imbalanced codebook是根因 |
+| 2604.04982 | 电商 (E-commerce) | 序列推荐 (SeqRec), 强化学习 (RL) | 数据安全 (Privacy Unlearning) | LLM&Rec | 否 | 电路感知框架将LLM参数分为遗忘/保留/共享三类，施加差异化梯度更新策略 | 遗忘效率+18%，效用+6%，速度3.5×；首次将电路可解释性应用于推荐遗忘 |
+| 2604.05379 | 电商 (E-commerce) | 序列推荐 (SeqRec), 记忆增强 (Memory Augmentation), RAG | 域适应 (Domain Adaptation), 召回优化 (Recall Opt.) | — | 否 | 协同记忆库检索+交叉注意力+KL对齐+置信度感知熵融合解决序列推荐推理期分布偏移 | 模型无关框架在5数据集一致提升；置信度自适应权重是设计亮点 |
+| 2604.05387 | 金融 (FinTech) | Agent系统 (Agent System), RAG, 强化学习 (RL) | 结构化数据检索 (Structured Retrieval), 特征工程自动化 (AutoFE) | LLM&Rec | 是 (+39.1% F1, +40.7% Tool Exec.) | 数据驱动AugFC（信息熵盲点识别+多轮多样性增强）+SFT+GRPO两阶段训练解决金融QA函数调用OOD | 线上F1+39.1%，工具执行率+40.7%；AugFC全自动修复参数多样性盲点；部署于腾讯元宝 |
